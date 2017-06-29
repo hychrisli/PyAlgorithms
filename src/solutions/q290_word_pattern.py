@@ -21,7 +21,7 @@ You may assume pattern contains only lowercase letters, and str contains lowerca
 
 class WordPattern(Solution):
     def verify_output(self, test_output, output):
-        return super(WordPattern, self).verify_output(test_output, output)
+        return test_output == output
 
     def run_test(self, input):
         return self.wordPattern(input[0], input[1])
@@ -38,6 +38,39 @@ class WordPattern(Solution):
         :type str: str
         :rtype: bool
         """
+        plkp = dict()
+        wlkp = dict()
+        idx = 0
+        plen = len(pattern)
+        words = str.split(" ")
+        slen = len(words)
+
+        if plen != slen:
+            return False
+
+        while idx < plen:
+            ch = pattern[idx]
+            word = words[idx]
+
+
+            # make sure one charactor ma
+            if ch in plkp:
+                tmp = plkp[ch]
+                if tmp != word:
+                    return False
+            else:
+                plkp[ch] = word
+
+            if word in wlkp:
+                tmp = wlkp[word]
+                if tmp != ch:
+                    return False
+            else:
+                wlkp[word] = ch
+
+            idx += 1
+
+        return True
 
 if __name__ == '__main__':
     solution = WordPattern()

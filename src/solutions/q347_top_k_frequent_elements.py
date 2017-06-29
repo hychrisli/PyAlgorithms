@@ -1,5 +1,5 @@
 from src.base.solution import Solution
-from src.tests.q347_top_k_frequent_elements import TopKFreqElemTestCases
+from src.tests.q347_test_top_k_frequent_elements import TopKFreqElemTestCases
 
 """
 
