@@ -11,11 +11,11 @@ class Solution(object):
         test_cases = self.gen_test_cases()
 
         for test_case in test_cases:
-            test_output = self.run_test(test_case.input)
-            if not self.verify_output(test_output, test_case.output):
-                self.test_success(test_case.name)
+            test_output_tup = self.run_test(test_case.input_tup)
+            if self.verify_output(test_output_tup, test_case.output_tup):
+                self.__test_success__(test_case.name, test_output_tup)
             else:
-                self.test_fail(test_case.name)
+                self.__test_fail__(test_case.name, test_output_tup)
 
 
     @abc.abstractmethod
@@ -42,7 +42,7 @@ class Solution(object):
         :param input: input value
         :return: return test output
         """
-        pass
+        return []
 
     @abc.abstractmethod
     def verify_output(self, test_output, output):
@@ -52,27 +52,23 @@ class Solution(object):
         :param output: give output
         :return: True or False
         """
-        if test_output == output:
-            return True
-
         return False
 
-
-    @staticmethod
-    def test_success(test_name):
+    def __test_success__(self, test_name, output_tup):
         """
         Handle successful test
         :param test_name: Name of the test case
         :return: N/A
         """
         print("[PASS] " + test_name)
+        self.print_output(output_tup)
 
-    @staticmethod
-    def test_fail(test_name):
+    def __test_fail__(self, test_name, output_tup):
         """
         Handle failed test
         :param test_name: Name of the test case
         :return: N/A
         """
         print("[FAIL] " + test_name)
+        self.print_output(output_tup)
         sys.exit(TEST_FAIL)

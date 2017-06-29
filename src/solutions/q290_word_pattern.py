@@ -38,3 +38,7 @@ class WordPattern(Solution):
         :type str: str
         :rtype: bool
         """
+
+if __name__ == '__main__':
+    solution = WordPattern()
+    solution.run_tests()
