@@ -29,24 +29,47 @@ Your output answer is guaranteed to be fitted in a 32-bit integer.
 
 class TargetSum(Solution):
     def verify_output(self, test_output, output):
-        return super(TargetSum, self).verify_output(test_output, output)
+        return test_output == output
 
     def gen_test_cases(self):
-        return super(TargetSum, self).gen_test_cases()
+        return TargetSumTestCases()
 
     def print_output(self, output):
         super(TargetSum, self).print_output(output)
 
     def run_test(self, input):
-        return super(TargetSum, self).run_test(input)
+        return self.findTargetSumWays(input[0], input[1])
 
-    class Solution(object):
-        def findTargetSumWays(self, nums, S):
-            """
-            :type nums: List[int]
-            :type S: int
-            :rtype: int
-            """
+    def findTargetSumWays(self, nums, S):
+        """
+        :type nums: List[int]
+        :type S: int
+        :rtype: int
+        """
+        nlen = len(nums)
+        if nlen < 1: return 0
+        if nums[0] == 0:
+            lkp = {nums[0]:2}
+        else:
+            lkp = {nums[0]:1, -nums[0]:1}
+
+        idx = 1
+        while idx < nlen:
+            tmplkp = dict()
+            for key in lkp:
+                tmplkp[key + nums[idx]] = tmplkp.get(key + nums[idx], 0) + lkp[key]
+                tmplkp[key - nums[idx]] = tmplkp.get(key - nums[idx], 0) + lkp[key]
+            lkp = tmplkp
+
+            # print(lkp)
+            idx += 1
+
+        if S in lkp:
+            res = lkp[S]
+        else:
+            res = 0
+
+        return res
 
 if __name__ == '__main__':
     sol = TargetSum()
