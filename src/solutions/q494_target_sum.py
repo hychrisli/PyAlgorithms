@@ -42,6 +42,23 @@ class TargetSum(Solution):
 
     def findTargetSumWays(self, nums, S):
         """
+        The original problem statement is equivalent to:
+        Find a subset of nums that need to be positive, and the rest of them negative,
+        such that the sum is equal to target
+
+        https://discuss.leetcode.com/topic/76243/java-15-ms-c-3-ms-o-ns-iterative-dp-solution-using-subset-sum-with-explanation
+
+        :type nums: List[int]
+        :type S: int
+        :rtype: int
+        """
+        nsum = sum(nums)
+
+
+
+    def findTargetSumWaysV1(self, nums, S):
+        """
+        DP traverse keys
         :type nums: List[int]
         :type S: int
         :rtype: int
