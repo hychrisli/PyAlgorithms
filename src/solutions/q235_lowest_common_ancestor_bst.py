@@ -3,13 +3,13 @@ from src.tests.q235_test_lowest_common_ancestor_bst import LowestCommonAncestorB
 
 class LowestCommonAncestorBst(Solution):
     def print_output(self, output):
-        print(output)
+        print(output.val if output else None)
 
     def run_test(self, input):
         return self.lowestCommonAncestor(input[0], input[1], input[2])
 
     def verify_output(self, test_output, output):
-        return test_output == output
+        return test_output.val if test_output else None == output.val if output else None
 
     def gen_test_cases(self):
         return LowestCommonAncestorBstTestCases()
@@ -21,9 +21,13 @@ class LowestCommonAncestorBst(Solution):
         :type q: TreeNode
         :rtype: TreeNode
         """
-        print(root.to_str("", False))
+        # print(root.to_str("", False))
 
-        return False
+        while  (root.val - p.val) * (root.val - q.val) > 0:
+            # print root.val
+            root = (root.left, root.right)[p.val > root.val]
+
+        return root
 
 if __name__ == '__main__':
     sol = LowestCommonAncestorBst()
