@@ -8,18 +8,18 @@ class TreeNode(object):
 
     def to_str(self, prefix, is_tail):
 
-        res = prefix +  '└── ' if is_tail else "├── " + str(self.val) + "\n"
+        res = prefix +  ('└── ' if is_tail else "├── ") + str(self.val) + "\n"
 
-        if self.left is not None:
-            res += self.left.to_str(prefix + "    " if is_tail else "│   ", False)
-        elif self.right is not None:
-            res += prefix + "    " if is_tail else "│   " + "├── L(null)\n"
+        if self.left:
+            res += self.left.to_str(prefix + ("    " if is_tail else "│   "), False)
+        elif self.right:
+            res += prefix + ("    " if is_tail else "│   ") + "├── L(null)\n"
+        # print("Left: \n" + res)
 
-        if self.right is not None:
-            res += self.right.to_str(prefix + "    " if is_tail else "│   ", True)
-        elif self.left is not None:
-            res += prefix + "    " if is_tail else "│   " + "├── R(null)\n"
+        if self.right:
+            res += self.right.to_str(prefix + ("    " if is_tail else "│   "), True)
+        elif self.left:
+            res += prefix + ("    " if is_tail else "│   ") + "└── R(null)\n"
+        # print("Right: \n" + res)
 
         return res
-
-q = Queue()
