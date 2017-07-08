@@ -14,7 +14,33 @@ class KthMinElemBst(Solution):
     def print_output(self, output):
         super(KthMinElemBst, self).print_output(output)
 
+
     def kthSmallest(self, root, k):
+        """
+        :type root: TreeNode
+        :type k: int
+        :rtype: int
+        """
+        self.k = k
+        self.cnt = 0
+        self.res = 0
+        self.walk_nodes(root)
+
+        return self.res
+
+    def walk_nodes(self, root):
+
+        if root:
+            self.walk_nodes(root.left)
+            # print(root.val)
+            self.cnt += 1
+            if self.cnt == self.k:
+                self.res = root.val
+                return
+            self.walk_nodes(root.right)
+        return
+
+    def kthSmallestIterative(self, root, k):
         """
         :type root: TreeNode
         :type k: int
