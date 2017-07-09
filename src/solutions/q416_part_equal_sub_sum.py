@@ -2,6 +2,8 @@ from src.base.solution import Solution
 from src.tests.q416_test_part_equal_sub_sum import PartEqualSubSumTestCases
 
 """
+https://leetcode.com/problems/partition-equal-subset-sum/#/description
+
 Given a non-empty array containing only positive integers, 
     find if the array can be partitioned into two subsets such that the sum of elements in both subsets is equal.
 
@@ -45,6 +47,21 @@ class PartEqualSubSum(Solution):
         :type nums: List[int]
         :rtype: bool
         """
+
+        nsum = sum(nums)
+        if nsum % 2:
+            return False
+
+        nsum /= 2
+        lkp = [False]*(nsum + 1)
+        lkp[0] = True
+
+        for num in nums:
+            for i in xrange(nsum, 0, -1):
+                lkp[i] = lkp[i] or ( lkp[i-num] if i-num >= 0 else False )
+
+        return lkp[-1]
+
 
 if __name__ == '__main__':
     sol = PartEqualSubSum()
