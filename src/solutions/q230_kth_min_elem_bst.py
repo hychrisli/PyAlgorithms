@@ -1,6 +1,13 @@
 from src.base.solution import Solution
 from src.tests.q230_test_kth_min_elem_bst import KthMinElemBstTestCases
 
+"""
+Given a binary search tree, write a function kthSmallest to find the kth smallest element in it.
+
+Note: 
+You may assume k is always valid, 1 <= k <= BST's total elements.
+"""
+
 class KthMinElemBst(Solution):
     def verify_output(self, test_output, output):
         return test_output == output
