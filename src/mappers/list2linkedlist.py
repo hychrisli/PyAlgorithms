@@ -7,5 +7,6 @@ def to_linkedlist(lst):
 
     for item in lst:
         pt.next = ListNode(item)
+        pt = pt.next
 
-    return root
+    return root.next

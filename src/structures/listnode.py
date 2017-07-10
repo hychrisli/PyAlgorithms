@@ -7,9 +7,10 @@ class ListNode(object):
 
 
     def to_str(self):
-        root = self
+        pt = self
         lstr = ""
-        while root:
-            lstr += root.val + " -> "
+        while pt:
+            lstr += str(pt.val) + " -> "
+            pt = pt.next
 
         return lstr
