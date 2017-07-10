@@ -13,13 +13,13 @@ class TreeNode(object):
         if self.left:
             res += self.left.to_str(prefix + ("    " if is_tail else "│   "), False)
         elif self.right:
-            res += prefix + ("    " if is_tail else "│   ") + "├── L(null)\n"
+            res += prefix + ("    " if is_tail else "│   ") + "├── L(None)\n"
         # print("Left: \n" + res)
 
         if self.right:
             res += self.right.to_str(prefix + ("    " if is_tail else "│   "), True)
         elif self.left:
-            res += prefix + ("    " if is_tail else "│   ") + "└── R(null)\n"
+            res += prefix + ("    " if is_tail else "│   ") + "└── R(None)\n"
         # print("Right: \n" + res)
 
         return res
