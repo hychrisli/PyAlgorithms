@@ -1,6 +1,5 @@
 from src.base.solution import Solution
 from src.tests.q310_test_min_height_trees import MinHeightTreesTestCases
-import collections
 
 
 class MinHeightTrees(Solution):
@@ -22,30 +21,30 @@ class MinHeightTrees(Solution):
         :type edges: List[List[int]]
         :rtype: List[int]
         """
-        graph = dict()
+
+        if n == 1: return [0]
+
+        graph = [set() for _ in xrange(n)]
 
         for i,j in edges:
-            graph[i] = graph.get(i,set())
             graph[i].add(j)
-            graph[j] = graph.get(j,set())
             graph[j].add(i)
 
-        leaves = collections.deque([ i for i in xrange(n) if len(graph[i]) == 1])
+        print(graph)
 
-        while leaves:
-            print(leaves)
-            print(graph)
-            leaf = leaves.popleft()
-            if graph[leaf]:
+        leaves =[ i for i in xrange(n) if len(graph[i]) == 1]
+
+        while n > 2:
+            new_leaves = []
+            n -= len(leaves)
+            for leaf in leaves:
                 parent = graph[leaf].pop()
-                if len(graph[parent]) == 1 and leaf in graph[parent]:
-                    return [parent, leaf]
                 graph[parent].remove(leaf)
-                if len(graph[parent]) < 2:
-                    leaves.append(parent)
-            else:
-                return [leaf]
+                if len(graph[parent]) == 1:
+                    new_leaves.append(parent)
 
+            leaves = new_leaves
+        return leaves
 
 if __name__ == '__main__':
     sol = MinHeightTrees()
