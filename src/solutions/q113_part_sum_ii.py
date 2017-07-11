@@ -28,10 +28,32 @@ class PartSumII(Solution):
         :type sum: int
         :rtype: List[List[int]]
         """
+        self.path_vals = []
+        self.res = []
+        self.target_sum = sum
+        self.__sub_path__(root, 0)
+        return self.res
 
-        print(root.get_tree_str())
+    def __sub_path__(self, root, sub_sum):
 
-        return [[1]]
+        if root == None:
+            return
+
+        self.path_vals.append(root.val)
+        sub_sum += root.val
+
+        if root.left == None and root.right == None:
+            if sub_sum == self.target_sum:
+                self.res.append([x for x in self.path_vals])
+
+            self.path_vals.pop()
+            return
+
+        self.__sub_path__(root.left, sub_sum)
+        self.__sub_path__(root.right, sub_sum)
+        self.path_vals.pop()
+        return
+
 
 
 if __name__ == '__main__':
