@@ -23,3 +23,6 @@ class TreeNode(object):
         # print("Right: \n" + res)
 
         return res
+
+    def get_tree_str(self):
+        return self.to_str("", False)
