@@ -24,7 +24,7 @@ class MaxSubPalindrome(Solution):
         lkp = [[False for _ in xrange(n)] for _ in xrange(n)]
         maxsubstr = ""
 
-        for i in xrange(n):
+        for i in xrange(n-1, -1, -1):
             for j in xrange(i, n):
                 lkp[i][j] = s[i] == s[j] and ( j - i < 3 or s[i+1] == s[j-1])
                 if lkp[i][j] and j - i + 1 > len(maxsubstr):

@@ -23,8 +23,10 @@ class HouseRobber(Solution):
         :type nums: List[int]
         :rtype: int
         """
-        
-
+        last, now = 0, 0
+        for num in nums:
+            last, now = now, max(last + num, now)
+        return now
 
     def rob_v1(self, nums):
         """
