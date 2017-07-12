@@ -16,7 +16,7 @@ class MaxSubPalindrome(Solution):
 
     def longestPalindrome(self, s):
         """
-
+        Slow
         :type s: str
         :rtype: str
         """
@@ -26,10 +26,10 @@ class MaxSubPalindrome(Solution):
 
         for i in xrange(n-1, -1, -1):
             for j in xrange(i, n):
-                lkp[i][j] = s[i] == s[j] and ( j - i < 3 or s[i+1] == s[j-1])
+                lkp[i][j] = s[i] == s[j] and ( j - i < 3 or lkp[i+1][j-1])
                 if lkp[i][j] and j - i + 1 > len(maxsubstr):
                     maxsubstr = s[i:j+1]
-
+        # for lst in lkp: print(lst)
         return maxsubstr
 
 
