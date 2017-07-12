@@ -16,14 +16,27 @@ class HouseRobber(Solution):
 
     def rob(self, nums):
         """
+        f(0) = nums[0]
+        f(1) = max(num[0], num[1])
+        f(k) = max( f(k-2) + nums[k], f(k-1) )
+            use the node or not
+        :type nums: List[int]
+        :rtype: int
+        """
+        
+
+
+    def rob_v1(self, nums):
+        """
+        update date nums[i+2] with 2 or 3 houses ahead
         :type nums: List[int]
         :rtype: int
         """
         n = len(nums)
         nums = [0, 0] + nums
 
-        for i in xrange(n):
-            nums[i + 2] += nums[i]
+        for i in xrange(1, n):
+            nums[i + 2] += max(nums[i],nums[i-1])
 
         return max(nums[-1], nums[-2])
 
