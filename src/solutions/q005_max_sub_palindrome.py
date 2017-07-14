@@ -14,7 +14,44 @@ class MaxSubPalindrome(Solution):
     def verify_output(self, test_output, output):
         return test_output in output
 
+    # Fastest approach
     def longestPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+
+
+    # Center Expansion
+    def longestPalindromev2(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        self.s = s
+        n = len(s)
+        self.maxpalin = ""
+
+        for i in xrange(n): # range from 0 to n-1
+            self.expand(n,i,i) # odd len
+            self.expand(n,i,i+1) # even len
+        return self.maxpalin
+
+    def expand(self,n, li, ui):
+
+        while li > -1 and ui < n and self.s[li] == self.s[ui]:
+            li -= 1
+            ui += 1
+
+        # step back
+        li += 1
+        ui -= 1
+
+        if len(self.maxpalin) < ui - li + 1:
+            self.maxpalin = self.s[li:ui+1]
+
+    # First attempt DP -> Slow
+    def longestPalindromev1(self, s):
         """
         Slow
         :type s: str

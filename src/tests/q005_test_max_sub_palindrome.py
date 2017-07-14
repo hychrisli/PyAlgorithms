@@ -7,3 +7,4 @@ class MaxSubPalindromeTestCases(TestCases):
         self.__add_test_case__("Test 2", "bacaba", {"bacab"})
         self.__add_test_case__("Test 3", "bacacd", {"aca", "cac"})
         self.__add_test_case__("Test 4", "aaabaaaa", {"aaabaaa"})
+        self.__add_test_case__("Test 5", "a", {"a"})
