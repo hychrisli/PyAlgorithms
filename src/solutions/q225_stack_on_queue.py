@@ -26,6 +26,8 @@ class MyStack(object):
         """
         Initialize your data structure here.
         """
+        self.q = collections.deque()
+        self.n = 0
 
     def push(self, x):
         """
@@ -33,27 +35,32 @@ class MyStack(object):
         :type x: int
         :rtype: void
         """
+        self.q.append(x)
+        for _ in xrange(self.n):
+            self.q.append(self.q.popleft())
+        self.n += 1
 
     def pop(self):
         """
         Removes the element on top of the stack and returns that element.
         :rtype: int
         """
-
+        self.n -= 1
+        return self.q.popleft()
 
     def top(self):
         """
         Get the top element.
         :rtype: int
         """
-
+        return self.q[0]
 
     def empty(self):
         """
         Returns whether the stack is empty.
         :rtype: bool
         """
-
+        return not self.n
 
 if __name__ == '__main__':
     sol = StackOnQueue()
