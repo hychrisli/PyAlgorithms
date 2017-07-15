@@ -90,7 +90,7 @@ class RandomizedSet(object):
         Get a random element from the set.
         :rtype: int
         """
-        return random.choice(self.l)
+        return self.l[random.randint(0, self.idx - 1)]
 
 
 if __name__ == '__main__':
