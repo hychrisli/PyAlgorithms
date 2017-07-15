@@ -40,11 +40,13 @@ class MyStack(object):
         :rtype: int
         """
 
+
     def top(self):
         """
         Get the top element.
         :rtype: int
         """
+
 
     def empty(self):
         """
