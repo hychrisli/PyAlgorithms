@@ -22,6 +22,24 @@ class MaxHeap:
 
             self.max_heapify(idxmax)
 
+    def max_heapify_iter(self, i):
+
+
+        while i < self.n:
+
+            li, ri, idxmax = 2*i+1, 2*(i+1), i
+
+            if li < self.n and self.lst[li] > self.lst[idxmax]:
+                idxmax = li
+            if ri < self.n and self.lst[ri] > self.lst[idxmax]:
+                idxmax = ri
+
+            if idxmax == i: break
+
+            tmp = self.lst[i]
+            self.lst[i] = self.lst[idxmax]
+            self.lst[idxmax] = tmp
+            i = idxmax
 
     def build_max_heap(self):
         pass
@@ -31,11 +49,9 @@ class MaxHeap:
 
 
 
-
-
 if __name__ == '__main__':
     heap1 = MaxHeap([5,4,6,2,1])
-    heap1.max_heapify(0)
+    heap1.max_heapify_iter(0)
     print(heap1.lst)
     # result: [6, 4, 5, 2, 1]
 
