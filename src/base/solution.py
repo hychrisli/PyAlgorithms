@@ -26,7 +26,6 @@ class Solution(object):
         """
         return TestCases()
 
-    @abc.abstractmethod
     def print_output(self, output):
         """
         print output data
@@ -44,7 +43,6 @@ class Solution(object):
         """
         return []
 
-    @abc.abstractmethod
     def verify_output(self, test_output, output):
         """
         Verify if test output is valid compared to given output
@@ -52,7 +50,7 @@ class Solution(object):
         :param output: give output
         :return: True or False
         """
-        return False
+        return test_output == output
 
     def __test_success__(self, test_name, output_tup):
         """
