@@ -42,12 +42,14 @@ class MaxHeap:
             i = idxmax
 
     def build_max_heap(self):
-        pass
+        print self.n/2
+        for i in xrange(self.n/2, -1, -1):
+            self.max_heapify(i)
+            print(self.lst)
+
 
     def heap_sort(self):
         pass
-
-
 
 if __name__ == '__main__':
     heap1 = MaxHeap([5,4,6,2,1])
@@ -59,3 +61,7 @@ if __name__ == '__main__':
     heap2.max_heapify(2)
     print(heap2.lst)
     # Result [27, 17, 10, 16, 13, 9, 1, 5, 7, 12, 4, 8, 3, 0]
+
+    heap3 = MaxHeap([1,2,3,5,6,7,8,9,10,11])
+    heap3.build_max_heap()
+    print(heap3.lst)
