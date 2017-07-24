@@ -8,6 +8,7 @@ class MergeKSortedListsTestCases(TestCases):
         super(MergeKSortedListsTestCases, self).__init__()
         self.__add_test_case__("Test 1", self.get_lists(), to_linkedlist([1, 2, 2, 3, 4, 5, 8, 9, 10, 12, 14]))
         self.__add_test_case__("Test 2", [], None)
+        self.__add_test_case__("Test 3", [to_linkedlist([-2,-1,-1,-1]), to_linkedlist([])], to_linkedlist([-2,-1,-1,-1]))
 
 
     def get_lists(self):

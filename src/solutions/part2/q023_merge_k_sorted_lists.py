@@ -22,6 +22,30 @@ class MergeKSortedLists(Solution):
         :type lists: List[ListNode]
         :rtype: ListNode
         """
+
+        import heapq
+        hq, head  = [], ListNode(None)
+
+        for node in lists:
+            if node:
+                heapq.heappush(hq, (node.val, node))
+
+        pt = head
+        while hq:
+            pt.next = heapq.heappop(hq)[1]
+            pt = pt.next
+            if pt.next:
+                heapq.heappush(hq,(pt.next.val, pt.next))
+
+        return head.next
+
+
+
+    def mergeKLists_v1(self, lists):
+        """
+        :type lists: List[ListNode]
+        :rtype: ListNode
+        """
         self.lsts = lists
         if lists: return self.merge_sort(0, len(lists) - 1)
 
