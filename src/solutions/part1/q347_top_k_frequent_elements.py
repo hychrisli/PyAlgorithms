@@ -30,6 +30,7 @@ class TopKFreqElem(Solution):
     def print_output(self, output):
         super(TopKFreqElem, self).print_output(output)
 
+
     def topKFrequent(self, nums, k):
         """
         :type nums: List[int]
