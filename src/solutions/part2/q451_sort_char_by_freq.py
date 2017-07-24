@@ -31,6 +31,31 @@ class SortCharByFreq(Solution):
         :type s: str
         :rtype: str
         """
+        import heapq
+
+        acc, n, pq = dict(), len(s), []
+
+        for ch in s:
+            acc[ch] = acc.get(ch, 0) + 1
+
+        for key in acc:
+            pq.append((- acc[key], key))
+
+        heapq.heapify(pq)
+
+        res = ""
+        while pq:
+            val = heapq.heappop(pq)
+            res += (- val[0]) * val[1]
+
+        return res
+
+
+    def frequencySort_v1(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
         acc, n = dict(), len(s)
         buckets = [[] for _ in xrange(n+1)]
 
