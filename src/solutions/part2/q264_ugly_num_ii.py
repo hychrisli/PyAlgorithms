@@ -9,7 +9,29 @@ class UglyNumIi(Solution):
     def run_test(self, input):
         return self.nthUglyNumber(input)
 
+
     def nthUglyNumber(self, n):
+        """
+        Dynamic programming
+        :type n: int
+        :rtype: int
+        """
+        res = [1]
+        i2, i3, i5 = 0, 0, 0
+
+        for _ in xrange(n-1):
+            val2, val3, val5 = res[i2] * 2, res[i3] * 3, res[i5]*5
+            mn = min(val2, val3, val5)
+            res.append(mn)
+            if mn == val2: i2 += 1
+            if mn == val3: i3 += 1
+            if mn == val5: i5 += 1
+
+        return res[-1]
+
+
+
+    def nthUglyNumber_v1(self, n):
         """
         :type n: int
         :rtype: int
