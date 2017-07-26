@@ -16,7 +16,36 @@ class CourseScheduleIi(Solution):
 
         return '-'.join([str(x) for x in test_output]) in res
 
+
     def findOrder(self, numCourses, prerequisites):
+        """
+        :type numCourses: int
+        :type prerequisites: List[List[int]]
+        :rtype: List[int]
+        """
+
+        from collections import deque, defaultdict
+        chld, pres, q, res = defaultdict(set), [0]*numCourses, deque(), []
+
+        for course, pre in prerequisites:
+            pres[course] += 1
+            chld[pre].add(course)
+
+        for i in xrange(numCourses):
+            if not pres[i]: q.append(i)
+
+        while q:
+            pre = q.popleft()
+
+            for course in chld[pre]:
+                pres[course] -= 1
+                if not pres[course]: q.append(course)
+
+            res.append(pre)
+
+        return res if len(res) == numCourses else []
+
+    def findOrder_graph(self, numCourses, prerequisites):
         """
         :type numCourses: int
         :type prerequisites: List[List[int]]
