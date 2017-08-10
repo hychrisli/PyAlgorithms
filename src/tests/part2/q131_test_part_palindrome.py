@@ -15,4 +15,4 @@ class PartParlindromeTestCases(TestCases):
                 ["a", "aba", "c"],
                 ["aa", "b", "a", "c"]
             ])
-        self.__add_test_case__("Test 4", "", [])
+        self.__add_test_case__("Test 4", "", [[]])
