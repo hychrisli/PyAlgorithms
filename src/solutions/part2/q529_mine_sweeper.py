@@ -27,29 +27,21 @@ class MineSweeper(Solution):
 
     def helper(self, r, c):
 
-        if r in {-1, self.m} or c in {-1, self.n} or self.board[r][c] in self.bound:
+        if self.board[r][c] in self.bound:
             return
-        cnt = self.getMines(r,c)
+
+        cnt = 0
+        for i in xrange(max(r-1,0), min(r+2,self.m)):
+            for j in xrange(max(c-1,0), min(c+2,self.n)):
+                if self.board[i][j] == 'M':
+                    cnt += 1
 
         if cnt: self.board[r][c] = str(cnt)
         else:
             self.board[r][c] = 'B'
-            for i in xrange(r-1, r+2):
-                for j in xrange(c-1, c+2):
+            for i in xrange(max(r-1,0), min(r+2,self.m)):
+                for j in xrange(max(c-1,0), min(c+2, self.n)):
                     self.helper(i,j)
-
-
-    def getMines(self, r, c):
-        cnt = 0
-        for i in xrange(r-1, r+2):
-            for j in xrange(c-1, c+2):
-                if i in {-1, self.m} or j in {-1, self.n}:
-                    continue
-                if self.board[i][j] == 'M':
-                    cnt += 1
-
-        return cnt
-
 
 
 if __name__ == '__main__':
